@@ -12,7 +12,7 @@ import org.elasticsearch.action.admin.indices.create.CreateIndexRequest
 import org.elasticsearch.action.bulk.BulkRequest
 import org.elasticsearch.action.delete.DeleteRequest
 import org.elasticsearch.action.get.GetRequest
-import org.elasticsearch.action.index.IndexRequest
+import org.elasticsearch.action.index.{IndexRequest, IndexResponse}
 import org.elasticsearch.action.update.UpdateRequest
 import org.elasticsearch.client.{Response, RestClient, RestClientBuilder, RestHighLevelClient}
 import org.elasticsearch.common.settings.Settings
