@@ -31,15 +31,22 @@ trait ObjectUpdater {
       val ecmlBody = getContentBody(identifier, readerConfig)
       updateContentBody(identifier,ecmlBody,readerConfig)
     }
+    
+    logger.info("DB ID ::: " + obj.dbId)
 
     if (!StringUtils.equalsIgnoreCase(editId, identifier)) {
       val imgNodeDelQuery = s"""MATCH (n:domain{IL_UNIQUE_ID:"$editId"}) DETACH DELETE n;"""
+      logger.info("imgNodeDelQuery ::: " + imgNodeDelQuery)
+
       neo4JUtil.executeQuery(imgNodeDelQuery)
       deleteExternalData(obj, readerConfig)
     }
     val result: StatementResult = neo4JUtil.executeQuery(query)
     if (null != result && result.hasNext)
       logger.info(s"ObjectUpdater:: saveOnSuccess:: statement result : ${result.next().asMap()}")
+    
+    logger.info("result ::: "+ result)
+    logger.info("ObjectUpdater ::::: all graph data updated....")
     saveExternalData(obj, readerConfig)
   }
 
